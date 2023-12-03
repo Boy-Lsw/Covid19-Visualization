@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="about_box">
     <button @click="ToHome">click</button>
   </div>
 </template>
@@ -14,4 +14,9 @@ const ToHome = () => {
 }
 </script>
 
-<style lang=""></style>
+<style lang="less" scoped>
+.about_box{
+  height: 100vh;
+  width: 100vw;
+}
+</style>
