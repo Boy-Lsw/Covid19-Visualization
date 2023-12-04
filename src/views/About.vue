@@ -1,17 +1,19 @@
 <template>
   <div class="about_box">
-    <button @click="ToHome">click</button>
+    <PageContentTitle/>
+    <Echarts></Echarts>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
+// import { useRouter } from 'vue-router'
+import PageContentTitle from '../component/PageContentTitle/index.vue'
+import Echarts from '../component/Echarts/index.vue'
+// const $router = useRouter()
 
-const $router = useRouter()
-
-const ToHome = () => {
-  $router.push('./')
-}
+// const ToHome = () => {
+//   $router.push('./')
+// }
 </script>
 
 <style lang="less" scoped>
