@@ -10,10 +10,14 @@ import '@/assets/style/reset.less'
 import '@/assets/style/common.less'
 import '@/assets/style/media.less'
 
+import init from './init.ts'
+
 initAMapApiLoader({
   key: configs.VueAmapConfig.key,
   securityJsCode: configs.VueAmapConfig.securityJsCode,
 })
+
+init()
 
 const app = createApp(App)
 app.use(router)
