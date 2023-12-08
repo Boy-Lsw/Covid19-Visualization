@@ -1,6 +1,6 @@
 <template>
   <div class="home_box">
-    <Header :progress='progress'></Header>
+    <Header :progress="progress"></Header>
     <VueAmap></VueAmap>
   </div>
 </template>

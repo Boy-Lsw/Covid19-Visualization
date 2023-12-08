@@ -2,15 +2,13 @@
   <div class="covid19-header">
     <h1 class="h-title" @click="ToAbout">更多数据</h1>
     <div class="h-search">
-      <Search></Search>
+      <Search :progress="props.progress"></Search>
     </div>
     <ul class="h-list">
       <li class="h-l-title">
-        可视化菜单
+        {{ i18nMap.header.menus.title }}
         <ul class="h-l-t-extends">
-          <li>test1</li>
-          <li>test2</li>
-          <li>test3</li>
+          <li v-for="(text, index) in moreOptions" :key="index" @click="whichDrawer(text(), index)">{{  text() }}</li>
         </ul>
       </li>
       <li class="h-l-line h-l-title">|</li>
@@ -18,14 +16,39 @@
         <a href="https://github.com/Boy-Lsw" target="_blank">GitHub</a>
       </li>
     </ul>
+    <Drawer v-model="isOpen" :drawerTitle="drawerTitle">
+      <component :is="curDrawer" :close="close"></component>
+    </Drawer>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import Search from './Menu/Search/index.vue'
-const $router = useRouter()
+import { inject, reactive, ref } from 'vue';
+import defaultValue from '@/constant';
+import Drawer from './Menu/Drawer/index.vue'
+import MapStyle from './Menu/MapStyle/index.vue'
+import I18n from './Menu/MapStyle/index.vue'
 
+const isOpen = ref(false)
+const drawerTitle = ref('')
+const curDrawer = ref()
+const props = defineProps(['progress'])
+const i18nMap = inject('i18nMap', defaultValue.i18nMap)
+const menusComponents = [MapStyle, I18n]
+const moreOptions = reactive([
+    () => i18nMap.header.menus.style.title,
+    () => i18nMap.header.menus.i18n.title
+])
+const whichDrawer = (title: string, index: number) => {
+  isOpen.value = true
+  drawerTitle.value = title
+  curDrawer.value = menusComponents[index]
+}
+const close = () => {isOpen.value = false}
+
+const $router = useRouter()
 const ToAbout = () => {
   $router.push('./about')
 }
