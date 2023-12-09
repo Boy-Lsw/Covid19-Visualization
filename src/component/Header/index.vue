@@ -17,7 +17,7 @@
       </li>
     </ul>
     <Drawer v-model="isOpen" :drawerTitle="drawerTitle">
-      <component :is="curDrawer" :close="close"></component>
+      <component :is="curDrawer" @close="close"></component>
     </Drawer>
   </div>
 </template>
@@ -29,7 +29,7 @@ import { inject, reactive, ref } from 'vue';
 import defaultValue from '@/constant';
 import Drawer from './Menu/Drawer/index.vue'
 import MapStyle from './Menu/MapStyle/index.vue'
-import I18n from './Menu/MapStyle/index.vue'
+import I18n from './Menu/I18n/index.vue'
 
 const isOpen = ref(false)
 const drawerTitle = ref('')
@@ -46,7 +46,9 @@ const whichDrawer = (title: string, index: number) => {
   drawerTitle.value = title
   curDrawer.value = menusComponents[index]
 }
-const close = () => {isOpen.value = false}
+const close = () => {
+  isOpen.value = false
+}
 
 const $router = useRouter()
 const ToAbout = () => {

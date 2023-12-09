@@ -14,7 +14,7 @@ const _map = { en, fr, jp, ko, zh_cn, zh_hk }
 const langTools = {
   getLang: () => storage.getItem<LangType>('lang'),
   setLang: (val: LangType) => storage.setItem('lang', val),
-  $i18nMap: () => _map[langTools.getLang()],
+  $i18nMap: () => ({ ..._map[langTools.getLang()] }),//解构复制一份
 }
 
 export default langTools

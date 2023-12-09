@@ -74,8 +74,25 @@ const i18nMap = inject('i18nMap', defaultValue.i18nMap)
     .d-m-b-content{
       flex: 2;
       padding: 10px;
-      // background-color: black;
+      position: relative;
+      overflow-y: auto;
     }
   }
+}
+.drawer-enter-active,
+.drawer-leave-active {
+    transition: opacity 0.5s;
+}
+.drawer-enter-from,
+.drawer-leave-to{
+  opacity: 0;
+}
+.drawer-enter-active .d-m-body,
+.drawer-leave-active .d-m-body{
+  transition: right 0.5s;
+}
+.drawer-enter-from .d-m-body,
+.drawer-leave-to .d-m-body{
+  right: -100%;
 }
 </style>
