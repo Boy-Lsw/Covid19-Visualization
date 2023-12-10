@@ -5,13 +5,13 @@
       <el-amap-control-tool-bar :position="'RT'"/>
       <el-amap-control-control-bar :position="{ bottom: '60px', left: '20px' }" />
       <Geolocation/>
-      <div class="b-panel b-panel-left">
-        <NcovDetails />
-      </div>
-      <div class="b-panel b-panel-right">
-        <ColorClassify />
-      </div>
     </el-amap>
+    <div class="b-panel b-panel-left">
+      <NcovDetails/>
+    </div>
+    <div class="b-panel b-panel-right">
+      <ColorClassify />
+    </div>
   </div>
 </template>
 

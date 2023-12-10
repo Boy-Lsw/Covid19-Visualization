@@ -8,18 +8,20 @@
 
 <script setup lang="ts">
 import type { CityData } from '@/api/interface'
-import {reactive, onMounted} from 'vue'
+import {reactive, onMounted, provide} from 'vue'
 import { useRouter } from 'vue-router'
 import getProvinceData from '@/api/province'
 import getCountryData from '@/api/country'
 import getCityData from '@/api/cities'
 import PageContentTitle from '../component/PageContentTitle/index.vue'
 import Echarts from '../component/Echarts/index.vue'
+import langTools from '@/utils/i18n'
 const $router = useRouter()
 
 const toHome = () => {
   $router.push('./')
 }
+const i18nMap = reactive(langTools.$i18nMap())
 const country = reactive({ 
   comment: '',
     update_time: 0,
@@ -51,6 +53,8 @@ onMounted(() => {
   getCountry()
   getCities()
 })
+provide('i18nMap', i18nMap)
+provide('country', country)
 </script>
 
 <style lang="less" scoped>

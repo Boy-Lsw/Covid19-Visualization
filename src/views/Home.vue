@@ -47,7 +47,8 @@ const getCities = () =>
     progress.value += 2
     Object.assign(province, p)
     Object.assign(cities, c)
-    Object.assign(provinceCities, {...p, ...c})
+    //@ts-ignore
+    Object.assign(provinceCities, [...p, ...c])
 })
 
 onMounted(() => {

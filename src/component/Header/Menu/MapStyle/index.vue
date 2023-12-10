@@ -16,6 +16,7 @@
 import defaultValue from '@/constant';
 import {inject, ref} from 'vue'
 import storage from '@/utils/storage';
+import pubsub from '@/utils/pubsub/index.ts'
 
 /** 用户之前选择好的地图样式(临时) */
 const _order = storage.getItem('theme_order')
@@ -31,6 +32,7 @@ const i18nMap = inject('i18nMap', defaultValue.i18nMap)
 const switchStyle = (index: number) => {
   order.value = index
   storage.setItem('theme_order', String(index))
+  pubsub.publish('switchStyle', {style: _mapStyle[index], key: index})
 }
 </script>
 
