@@ -17,6 +17,7 @@ import defaultValue from '@/constant';
 import {inject, ref} from 'vue'
 import storage from '@/utils/storage';
 import pubsub from '@/utils/pubsub/index.ts'
+import styleUtils from '@/utils/theme';
 
 /** 用户之前选择好的地图样式(临时) */
 const _order = storage.getItem('theme_order')
@@ -24,6 +25,11 @@ const _order = storage.getItem('theme_order')
 const _mapStyle = ['normal', 'macaron', 'whitesmoke', 'dark', 'fresh', 'darkblue', 'blue', 'light', 'grey']
 
 const order = ref(_order? Number(_order) : 0)
+
+const style = styleUtils.adaptation()
+// 当面板展开时，跟随系统主题切换也会同步切换编号
+style.dark.push(() => (order.value = 3))
+style.light.push(() => (order.value = 0))
 
 type Emits = {(t:'close'):void}
 const emits = defineEmits<Emits>()

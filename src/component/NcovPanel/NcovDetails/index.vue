@@ -131,7 +131,7 @@ pubsub.subscribe('searchAreaData', (_, data) => updateData(data))
     border-top: 1px solid var(--border-color);
     p{
     transform: scale(0.9);
-    animation: bounce-comments-last 2s;
+    animation: bounce-comments-last 1s;
     }
   }
 }
